@@ -1,0 +1,53 @@
+<div>
+  <div>
+    <h1>
+      <span>Update set: </span>
+      <span>{{c.updateSetName}}</span>
+    </h1>
+    <div ng-if="c.collisions == null">
+      <span>Loading...</span>
+    </div>
+    <div ng-if="c.collisions.length == 0">
+      <span>No collisions found!</span>
+    </div>
+    <div ng-if="c.collisions != null && c.collisions.length != 0">
+      <div>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Update set</th>
+              <th>Recorded at</th>
+              <th>Collision with</th>
+              <th>Collisioned at</th>
+              <th>Element in collision</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="collision in c.collisions">
+              <td>
+                <a ng-href="sys_update_set.do?sys_id={{collision.set_sys_id}}" target="_blank">
+                  {{::collision.set_name}}
+                </a>
+              </td>
+              <td>{{::collision.update_updated_on}}</td>
+              <td>
+                <a ng-if="collision.collision_name"
+                   ng-href="sys_update_set.do?sys_id={{collision.collision_sys_id}}" target="_blank">
+                  {{::collision.collision_name}}
+                </a>
+                <span ng-if="!collision.collision_name">{{::collision.collision_sys_id}}</span>
+              </td>
+              <td>{{::collision.collision_recorded_at}}</td>
+              <td>
+                <span>{{::collision.update_type}} </span>
+                <a ng-href="{{collision.update_name | limitTo : collision.update_name.length-33}}.do?sys_id={{collision.update_name | limitTo : -32 : end}}"
+                   target="_blank">
+                  {{::collision.update_target_name}}
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

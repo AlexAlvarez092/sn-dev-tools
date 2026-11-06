@@ -1,0 +1,6 @@
+{
+    "scope": "x_680259_devtools",
+    "scopeId": "8a32c26097354849a5218a85b2a65e86",
+    "name": "SN Dev Tools",
+    "tsconfigPath": "./src/server/tsconfig.json"
+}
